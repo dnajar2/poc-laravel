@@ -13,7 +13,7 @@ jobs:
           command: |
             sudo apt update
             sudo docker-php-ext-install zip
-# Download and cache dependencies
+      # Download and cache dependencies
       - restore_cache:
           keys:
             # "composer.lock" can be used if it is committed to the repo
@@ -34,13 +34,13 @@ jobs:
           command: |
             mv .env.testing .env
             php artisan key:generate
-      
+
       - run:
           name: "Create database and run migration"
           command: |
             touch database/database.sqlite
             php artisan migrate --env=testing
-      
+
       - run:
           name: "Generate Passport encryption keys"
           command: php artisan passport:install
